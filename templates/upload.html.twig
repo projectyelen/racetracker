@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Upload Race Results
+{% endblock %}
+
+{% block body %}
+
+    <div class="mt-10 max-w-md mx-auto">
+        {{ form_start(race_form, {'attr': {'placeholder': '', 'class': 'flex w-full max-w-sm space-x-3'}}) }}
+
+            <div class="w-full max-w-2xl px-5 py-10 m-auto mt-10 bg-white rounded-lg shadow dark:bg-gray-800">
+                <div class="mb-6 text-3xl font-light text-center text-gray-800 dark:text-white">
+                    Add new race data
+                </div>
+                <div class="grid max-w-xl grid-cols-2 gap-4 m-auto">
+                    <div class="col-span-2 lg:col-span-1">
+                        <div class=" relative ">
+                            {{ form_label(race_form.raceName, 'Race Name', {'label_attr': {'class': 'text-white'}}) }}
+                            {{ form_widget(race_form.raceName, {'attr': {'placeholder': '', 'class': 'rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}}) }}
+                        </div>
+                    </div>
+                    <div class="col-span-2 lg:col-span-1">
+                        <div class=" relative ">
+                            {{ form_label(race_form.date, 'Date', {'label_attr': {'class': 'text-white'}}) }}
+                            {{ form_widget(race_form.date, {'attr': {'placeholder': '', 'class': 'rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}}) }}
+                        </div>
+                    </div>
+                    <div class="col-span-2 lg:col-span-1">
+                        <div class=" relative ">
+                            
+                            {{ form_label(race_form.csvFile, 'Upload CSV File', {'label_attr': {'class': 'text-white'}}) }}
+                            {{ form_widget(race_form.csvFile, {'attr': {'placeholder': '', 'class': 'rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'}}) }}
+                        </div>
+                    </div>
+                    <div class="col-span-2 text-right">
+                        {{ form_widget(race_form.Add, {'attr': {'class': 'py-2 px-4  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg'}}) }}
+                    </div>
+                </div>
+            </div>
+        {{ form_end(race_form) }}
+    </div>
+
+{% endblock %}

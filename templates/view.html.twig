@@ -1,0 +1,135 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    View Race Results
+{% endblock %}
+
+{% block body %}
+
+    <div class="mt-10 max-w-md mx-auto">
+
+        {% set errorFile = app.request.query.get('errorFile') %}
+        {% set errorName = app.request.query.get('errorName') %}
+        {% set errorTime = app.request.query.get('errorTime') %}
+        {% if errorFile|default(null) %}
+            <div class="mb-10 bg-red-200 border-red-600 text-red-600 border-l-4 p-4" role="alert">
+                <p class="font-bold">
+                    Warning
+                </p>
+                <p>
+                    {{ errorFile }}
+                </p>
+            </div>
+        {% endif %}
+        {% if errorName|default(null) %}
+            <div class="mb-10 bg-red-200 border-red-600 text-red-600 border-l-4 p-4" role="alert">
+                <p class="font-bold">
+                    Warning
+                </p>
+                <p>
+                    {{ errorName }}
+                </p>
+            </div>
+        {% endif %}
+        {% if errorTime|default(null) %}
+            <div class="mb-10 bg-red-200 border-red-600 text-red-600 border-l-4 p-4" role="alert">
+                <p class="font-bold">
+                    Warning
+                </p>
+                <p>
+                    {{ errorTime }}
+                </p>
+            </div>
+        {% endif %}
+
+        <a href="/upload" class="mb-10 flex items-center justify-center text-white border border-gray-400 text-lg py-2 px-2 rounded bg-gray-700">Click to open upload form</a>
+
+        <h2>Medium distance</h2>
+        <p>Average: {{ averageTime(race, 'medium') }}</p>
+
+        <table class="table p-4 bg-white shadow rounded-lg">
+            <thead>
+                <tr>
+                    <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
+                        Full name
+                    </th>
+                    <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
+                        Finish time
+                    </th>
+                    <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
+                        Placement
+                    </th>
+                    <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
+                        
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in race %}
+                    {% if result.distance == 'medium' %}
+                        <tr class="text-gray-700">
+                            <td class="border-b-2 p-4 dark:border-dark-5">
+                                {{ result.fullName }}
+                            </td>
+                            <td class="border-b-2 p-4 dark:border-dark-5">
+                                {{ result.raceTime|date('H:i:s') }}
+                            </td>
+                            <td class="border-b-2 p-4 dark:border-dark-5">
+                                {{ result.placement }}
+                            </td>
+                            <td class="border-b-2 p-4 dark:border-dark-5">
+                                <a href="/edit/{{ result.id }}" class="text-white border border-gray-400 text-lg py-2 px-2 rounded bg-gray-700">Edit</a>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-10 max-w-md mx-auto">
+
+        <h2>Long distance</h2>
+        <p>Average: {{ averageTime(race, 'long') }}</p>
+
+        <table class="table p-4 bg-white shadow rounded-lg">
+            <thead>
+                <tr>
+                    <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
+                        Full name
+                    </th>
+                    <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
+                        Finish time
+                    </th>
+                    <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
+                        Placement
+                    </th>
+                    <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-normal text-gray-900">
+                        
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in race %}
+                    {% if result.distance == 'long' %}
+                        <tr class="text-gray-700">
+                            <td class="border-b-2 p-4 dark:border-dark-5">
+                                {{ result.fullName }}
+                            </td>
+                            <td class="border-b-2 p-4 dark:border-dark-5">
+                                {{ result.raceTime|date('H:i:s') }}
+                            </td>
+                            <td class="border-b-2 p-4 dark:border-dark-5">
+                                {{ result.placement }}
+                            </td>
+                            <td class="border-b-2 p-4 dark:border-dark-5">
+                                <a href="/edit/{{ result.id }}" class="text-white border border-gray-400 text-lg py-2 px-2 rounded bg-gray-700">Edit</a>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
