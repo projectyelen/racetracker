@@ -26,6 +26,7 @@ class EditResultType extends AbstractType
             ->add('Edit', SubmitType::class)
         ;
 
+        //Form formating time to seconds and vice versa
         $builder
             ->get('raceTime')
             ->addModelTransformer(new CallbackTransformer(

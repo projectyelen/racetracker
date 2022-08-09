@@ -1,5 +1,7 @@
 <?php
 
+// Extension for calculating average race time
+
 namespace App\Twig;
 
 use Twig\Extension\AbstractExtension;
